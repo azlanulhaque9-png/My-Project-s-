@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diploma Courses - Academic Programs</title>
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        /* Header styling */
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        /* Table container */
+        .table-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+
+        /* Header styling */
+        thead {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            position: relative;
+        }
+
+        thead::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        th {
+            padding: 20px 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            text-align: center;
+            border: none;
+            position: relative;
+        }
+
+        th:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 25%;
+            bottom: 25%;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Body cell styling */
+        td {
+            padding: 18px 15px;
+            text-align: center;
+            border: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Row styling */
+        tbody tr {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fb;
+        }
+
+        tbody tr:hover {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        /* Course name styling */
+        td:nth-child(2) {
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: left;
+            padding-left: 25px;
+        }
+
+        /* Serial number styling */
+        td:nth-child(1) {
+            font-weight: 700;
+            color: #667eea;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 8px;
+            margin: 5px;
+            width: 60px;
+            position: relative;
+        }
+
+        /* Duration styling */
+        td:nth-child(3) {
+            font-weight: 600;
+            color: #27ae60;
+        }
+
+        /* Eligibility styling */
+        td:nth-child(4) {
+            background: rgba(52, 152, 219, 0.1);
+            color: #2980b9;
+            font-weight: 600;
+            border-radius: 20px;
+            margin: 5px;
+        }
+
+        /* Seats styling */
+        td:nth-child(5) {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #e74c3c;
+            position: relative;
+        }
+
+        /* Add badges for available seats */
+        td:nth-child(5)::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        /* Special styling for different courses */
+        tbody tr:nth-child(1) td:nth-child(2)::before { content: '💻 '; }
+        tbody tr:nth-child(2) td:nth-child(2)::before { content: '⚙️ '; }
+        tbody tr:nth-child(3) td:nth-child(2)::before { content: '🚗 '; }
+        tbody tr:nth-child(4) td:nth-child(2)::before { content: '🏗️ '; }
+        tbody tr:nth-child(5) td:nth-child(2)::before { content: '📱 '; }
+        tbody tr:nth-child(6) td:nth-child(2)::before { content: '⚡ '; }
+        tbody tr:nth-child(7) td:nth-child(2)::before { content: '🔌 '; }
+        tbody tr:nth-child(8) td:nth-child(2)::before { content: '💊 '; }
+        tbody tr:nth-child(9) td:nth-child(2)::before { content: '🖨️ '; }
+
+        /* Statistics section */
+        .stats-section {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .table-container {
+                padding: 20px;
+                margin: 0 10px;
+            }
+            
+            th, td {
+                padding: 12px 10px;
+                font-size: 0.9rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .table-container {
+                padding: 15px;
+                border-radius: 15px;
+            }
+            
+            table {
+                font-size: 0.8rem;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+            }
+            
+            td:nth-child(2) {
+                text-align: center;
+                padding-left: 15px;
+            }
+            
+            .stats-section {
+                flex-direction: column;
+            }
+        }
+
+        /* Animation for table load */
+        .table-container {
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        tbody tr {
+            animation: fadeInRow 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRow {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Stagger animation for rows */
+        tbody tr:nth-child(1) { animation-delay: 0.1s; }
+        tbody tr:nth-child(2) { animation-delay: 0.2s; }
+        tbody tr:nth-child(3) { animation-delay: 0.3s; }
+        tbody tr:nth-child(4) { animation-delay: 0.4s; }
+        tbody tr:nth-child(5) { animation-delay: 0.5s; }
+        tbody tr:nth-child(6) { animation-delay: 0.6s; }
+        tbody tr:nth-child(7) { animation-delay: 0.7s; }
+        tbody tr:nth-child(8) { animation-delay: 0.8s; }
+        tbody tr:nth-child(9) { animation-delay: 0.9s; }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 20px;
+            }
+            
+            .table-container {
+                background: white;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            thead {
+                background: #333 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-section">
+        <h1>Our Diploma Courses</h1>
+        <p class="subtitle">Comprehensive Technical Education Programs</p>
+    </div>
+    
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Course Name</th>
+                    <th>Duration</th>
+                    <th>Eligibility</th>
+                    <th>Available Seats</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Computer Science & Engineering</td>
+                    <td>3 Years</td>
+                    <td>10th Pass</td>
+                    <td>69</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Mechanical Engineering</td>
+                    <td>3 Years</td>
+                    <td>10th Pass</td>
+                    <td>72</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Automobile Engineering</td>
+                    <td>3 Years</td>
+                    <td>10th Pass</td>
+                    <td>69</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Civil Engineering</td>
+                    <td>3 Years</td>
+                    <td>10th Pass</td>
+                    <td>69</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Information Technology</td>
+                    <td>3 Years</td>
+                    <td>10th Pass</td>
+                    <td>69</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Electrical Engineering</td>
+                    <td>3 Years</td>
+                    <td>10th Pass</td>
+                    <td>72</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Electronics Engineering</td>
+                    <td>3 Years</td>
+                    <td>10th Pass</td>
+                    <td>79</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Pharmacy</td>
+                    <td>2 Years</td>
+                    <td>12th Pass</td>
+                    <td>63</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Printing Technology</td>
+                    <td>3 Years</td>
+                    <td>10th Pass</td>
+                    <td>69</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="stats-section">
+            <div class="stat-card">
+                <span class="stat-number">9</span>
+                <span class="stat-label">Total Courses</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">621</span>
+                <span class="stat-label">Total Seats</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">69</span>
+                <span class="stat-label">Avg. Seats</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

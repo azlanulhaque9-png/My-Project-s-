@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms-HTML</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        div {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        p {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fill The Above Form</h1>
+    <form action="/submit.html"></form>
+
+    <div>
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Enter name"required>
+    </div>
+
+    <div>
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" placeholder="Enter phone"required>
+    </div>
+
+    <div>
+        <label for="email">Email ID</label>
+        <input id="email" type="email" placeholder="Enter Email"required>
+    </div>
+
+    <div>
+        <label for="password">Password</label>
+        <input id="phone" type="password" placeholder="Enter Password"required>
+    </div>
+
+    <div>
+        <label for="DOB">Date Of Birth</label>
+        <input id="DOB" type="date" placeholder="Enter Date Of Birth"required>
+    </div>
+  
+    <div>
+        <label for="gender">Gender</label>
+        <select id="gender"required>
+            <option value=""Disabled Selected>Gender</option> 
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+
+    <div>
+        <p>Subscriptions Plan</p>
+        <input id="basics" type="radio" name="subscription" value="basics">
+        <label for="basics">Basic </label>
+
+        <input id="premium" type="radio" name="subscription" value="premium">
+        <label for="premium">Premium </label>
+
+        <input id="vip" type="radio" name="subscription" value="vip">
+        <label for="vip">VIP </label>
+    </div>
+    
+    <div>
+        <button type="sdubmit">Submit</button>
+    </div>
+    
+</body>
+</html>

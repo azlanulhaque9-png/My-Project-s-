@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Get In Touch</title>
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* Main container */
+        .contact-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            max-width: 800px;
+            width: 100%;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        /* Header section */
+        .contact-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 50px 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .contact-header h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Contact content */
+        .contact-content {
+            padding: 50px 40px;
+        }
+
+        .contact-methods {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Contact method cards */
+        .contact-method {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-method.phone {
+            border-left-color: #27ae60;
+        }
+
+        .contact-method.email {
+            border-left-color: #3498db;
+        }
+
+        .contact-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-method:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Contact method content */
+        .method-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .method-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-right: 20px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .phone .method-icon {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+
+        .email .method-icon {
+            background: linear-gradient(135deg, #3498db, #5dade2);
+        }
+
+        .method-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .method-subtitle {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+
+        .method-content {
+            margin-left: 80px;
+        }
+
+        .contact-link {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            border: 2px solid transparent;
+        }
+
+        .contact-link:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .phone .contact-link:hover {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+
+        .email .contact-link:hover {
+            background: linear-gradient(135deg, #3498db, #5dade2);
+        }
+
+        .contact-link::after {
+            content: '→';
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-link:hover::after {
+            transform: translateX(5px);
+        }
+
+        /* Additional info section */
+        .additional-info {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+
+        .additional-info h3 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .additional-info p {
+            color: #7f8c8d;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .contact-header {
+                padding: 40px 25px;
+            }
+            
+            .contact-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-content {
+                padding: 40px 25px;
+            }
+            
+            .contact-method {
+                padding: 25px;
+            }
+            
+            .method-content {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            
+            .method-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .method-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .contact-link {
+                font-size: 1.1rem;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-header h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-header p {
+                font-size: 1rem;
+            }
+            
+            .method-title {
+                font-size: 1.3rem;
+            }
+            
+            .contact-link {
+                font-size: 1rem;
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Floating animation for contact methods */
+        .contact-method {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .contact-method:nth-child(2) {
+            animation-delay: -3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Copy notification */
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+            transform: translateX(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .copy-notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container">
+        <div class="contact-header">
+            <h1>Contact Us</h1>
+            <p>We're here to help and answer any questions you might have</p>
+        </div>
+        
+        <div class="contact-content">
+            <div class="contact-methods">
+                <div class="contact-method phone">
+                    <div class="method-header">
+                        <div class="method-icon">📞</div>
+                        <div>
+                            <div class="method-title">Call Us</div>
+                            <div class="method-subtitle">Available 24/7 for support</div>
+                        </div>
+                    </div>
+                    <div class="method-content">
+                        <a href="tel:+919685325881" class="contact-link" onclick="copyToClipboard('9685325881', 'Phone number')">
+                            +91 9685325881
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-method email">
+                    <div class="method-header">
+                        <div class="method-icon">✉️</div>
+                        <div>
+                            <div class="method-title">Email Us</div>
+                            <div class="method-subtitle">Get in touch via email</div>
+                        </div>
+                    </div>
+                    <div class="method-content">
+                        <a href="mailto:azlanulhaque9@gmail.com" class="contact-link" onclick="copyToClipboard('azlanulhaque9@gmail.com', 'Email address')">
+                            azlanulhaque9@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="additional-info">
+                <h3>Quick Response Guaranteed</h3>
+                <p>We typically respond to calls immediately and emails within 24 hours. For urgent matters, please call us directly.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="copy-notification" id="copyNotification">
+        ✓ Copied to clipboard!
+    </div>
+
+    <script>
+        function copyToClipboard(text, type) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function() {
+                    showNotification(`${type} copied to clipboard!`);
+                }).catch(function() {
+                    // Fallback for older browsers
+                    fallbackCopyTextToClipboard(text, type);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopyTextToClipboard(text, type);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text, type) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showNotification(`${type} copied to clipboard!`);
+            } catch (err) {
+                console.error('Fallback: Unable to copy', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('copyNotification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Add click event listeners to contact links for copy functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactLinks = document.querySelectorAll('.contact-link');
+            contactLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Only copy to clipboard, don't prevent default link behavior
+                    e.preventDefault();
+                    
+                    // Extract the contact info from the link
+                    const contactInfo = this.textContent.trim();
+                    const isPhone = this.href.startsWith('tel:');
+                    const type = isPhone ? 'Phone number' : 'Email address';
+                    
+                    copyToClipboard(contactInfo, type);
+                    
+                    // Still allow the link to work after a short delay
+                    setTimeout(() => {
+                        if (isPhone) {
+                            window.location.href = this.href;
+                        } else {
+                            window.location.href = this.href;
+                        }
+                    }, 100);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

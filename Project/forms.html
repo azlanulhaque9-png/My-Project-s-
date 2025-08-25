@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 300;
+        }
+
+        /* Form container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 550px;
+            width: 100%;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .form-header h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        form {
+            padding: 40px;
+        }
+
+        /* Form field styling */
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Select dropdown styling */
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23667eea" d="m0 0 2 2 2-2z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 12px;
+        }
+
+        /* Radio button group */
+        .radio-group {
+            margin-bottom: 25px;
+        }
+
+        .radio-group p {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .radio-options {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .radio-option:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #667eea;
+        }
+
+        .radio-option input[type="radio"]:checked+label,
+        .radio-option:has(input[type="radio"]:checked) {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .radio-option label {
+            margin: 0;
+            cursor: pointer;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* Submit button */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Form validation styles */
+        input:invalid {
+            border-color: #e74c3c;
+        }
+
+        input:invalid:focus {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+
+            .form-container {
+                margin: 0;
+            }
+
+            form {
+                padding: 30px 25px;
+            }
+
+            .form-header {
+                padding: 25px;
+            }
+
+            .radio-options {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .radio-option {
+                justify-content: center;
+            }
+        }
+
+        /* Animation for form load */
+        .form-container {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Placeholder styling */
+        input::placeholder {
+            color: #a0aec0;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>User Registration</h1>
+
+    <div class="form-container">
+        <div class="form-header">
+            <h2>Fill the above Information form</h2>
+            <p>Fill in your details to get started</p>
+        </div>
+
+        <form action="/submit.html" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input id="name" name="name" type="text" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input id="phone" name="phone" type="tel" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" placeholder="Enter your email address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="Create a secure password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input id="dob" name="dob" type="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+            </div>
+
+            <div class="radio-group">
+                <p>Select Course</p>
+                <div class="radio-options">
+                    <div class="radio-option">
+                        <input id="Information Technology" type="radio" name="cource" value="Information Technology(IT)"
+                            required>
+                        <label for="Information Technology">Information Technology</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input id="Computer Science" type="radio" name="cource" value="Computer Science">
+                        <label for="Computer Science">Computer Science</label>
+                    </div>
+
+                    <div class="radio-option">
+                        <input id="Mechanical" type="radio" name="course" value="Mechanical ">
+                        <label for="Mechanical">Mechanical</label>
+                    </div>
+                    <div class="radio-option">
+                        <input id="Printing" type="radio" name="course" value="Printing ">
+                        <label for="Printing">Printing</label>
+                    </div>
+                    <div class="radio-option">
+                        <input id="Pharmacy" type="radio" name="course" value="Pharmacy ">
+                        <label for="Pharmacy">Pharmacy</label>
+                    </div>
+                    <div class="radio-option">
+                        <input id="Electrical nd Electronics" type="radio" name="course"
+                            value="Electrical nd Electronics ">
+                        <label for="Electrical nd Electronics">Electrical nd Electronics</label>
+                    </div>
+                    <div class="radio-option">
+                        <input id="Civil" type="radio" name="course" value="Civil ">
+                        <label for="Civil">Civil</label>
+                    </div>
+                    <div class="radio-option">
+                        <input id="Automobile" type="radio" name="course" value="Automobile ">
+                        <label for="Automobile">Automobile</label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+    </div>
+</body>
+
+</html>

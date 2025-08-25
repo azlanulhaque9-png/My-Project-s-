@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalaniketan Polytechnic College 2.0</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, #002147 0%, #001a3a 100%);
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Navigation Styles */
+    nav {
+      background: linear-gradient(135deg, #011f3f 0%, #001529 100%);
+      padding: 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 15px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 25px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 12px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Logo Content Styles */
+    .logoContent {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      margin: 20px auto;
+      max-width: 300px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .logoContent img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 10px;
+    }
+
+    .logoName {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+      backdrop-filter: blur(10px);
+      margin: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: #002147;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      line-height: 1.8;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 80px 20px;
+      background: rgba(255, 255, 255, 0.95);
+      margin: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .section h2 {
+      color: #002147;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 50px;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .section h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+
+    /* Card Container */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+      padding: 0 20px;
+    }
+
+    /* Card Styles */
+    .card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(102, 126, 234, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-color: rgba(102, 126, 234, 0.3);
+    }
+
+    .card h3 {
+      color: #002147;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .card p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* Contact Section */
+    .section p {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #555;
+      margin: 10px 0;
+      font-weight: 500;
+    }
+
+    /* Footer Styles */
+    footer {
+      background: linear-gradient(135deg, #002147 0%, #001a3a 100%);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerGrain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="75" cy="75" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="50" r="1.5" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23footerGrain)"/></svg>');
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    footer .logoContent {
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    footer p {
+      font-size: 1rem;
+      opacity: 0.8;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      nav a {
+        margin: 0 10px;
+        font-size: 1rem;
+        padding: 10px 15px;
+      }
+
+      .hero {
+        padding: 60px 20px;
+        margin: 20px 10px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section {
+        padding: 50px 15px;
+        margin: 20px 10px;
+      }
+
+      .section h2 {
+        font-size: 2.2rem;
+      }
+
+      .card-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+      }
+
+      .card {
+        padding: 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        padding: 0;
+      }
+
+      nav ul {
+        flex-direction: column;
+        padding: 10px 0;
+      }
+
+      nav a {
+        margin: 5px 0;
+        display: block;
+        width: 200px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .section h2 {
+        font-size: 1.8rem;
+      }
+
+      .logoContent {
+        max-width: 250px;
+      }
+    }
+
+    /* Animation for page load */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero,
+    .section,
+    .card {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Kalaniketan Polytechnic College 2.O</h1>
+    <p>Your Future Starts Here</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="/home.html">Home</a></li>
+      <li><a href="/diplomacourses.html">Courses</a></li>
+      <li><a href="/admission.html">Admission</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+      <li><a href="/forms.html">Forms</a></li>
+      <li><a href="/logo.html">Colleges</a></li>
+    </ul>
+  </nav>
+
+  <div class="logoContent">
+    <img src="logo.png" alt="Kalaniketan Logo">
+    <h1 class="logoName">Kalaniketan 2.0</h1>
+  </div>
+
+  <div class="hero">
+    <h1>Welcome to Kalaniketan Polytechnic College 2.0</h1>
+    <p>Providing quality education since 1947. Take admission in our college and build a successful career!</p>
+  </div>
+
+  <div class="section">
+    <h2>Our Diploma Courses</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Computer Science</h3>
+        <p>Computer Science (CS) is the study of computers, computational systems, algorithms, and software. It focuses
+          on both the theory and practice of how computers work and how they can be used to solve real-world problems. A
+          Computer Science course teaches students programming, problem-solving, data management, algorithms, hardware
+          concepts, and emerging technologies like artificial intelligence and machine learning.</p>
+      </div>
+      <div class="card">
+        <h3>Mechanical Engineering</h3>
+        <p>Mechanical Engineering is one of the oldest and broadest branches of engineering. It deals with the design,
+          development, manufacturing, operation, and maintenance of machines and mechanical systems. This course
+          combines principles of physics, mathematics, material science, and engineering to design and analyze
+          everything from small components to large systems like engines, vehicles, turbines, and industrial machines.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Automobile Engineering</h3>
+        <p>Automobile Engineering is a specialized branch of engineering that focuses on the design, development,
+          manufacturing, testing, and maintenance of automobiles — including cars, motorcycles, buses, trucks, and other
+          motor vehicles. This course combines elements of mechanical, electrical, electronic, software, and safety
+          engineering to create and improve automotive vehicles and their systems.</p>
+      </div>
+      <div class="card">
+        <h3>Civil Engineering</h3>
+        <p>Civil Engineering is one of the oldest and broadest branches of engineering. It deals with the planning,
+          design, construction, and maintenance of the physical and naturally built environment, such as buildings,
+          roads, bridges, canals, dams, airports, and water supply systems. This course equips students with the
+          knowledge to develop infrastructure that meets the needs of society while ensuring safety, sustainability, and
+          environmental responsibility.</p>
+      </div>
+      <div class="card">
+        <h3>Information Technology</h3>
+        <p>The Information Technology (IT) course provides students with the knowledge, skills, and hands-on experience
+          needed to work with computer systems, software, networks, and data management. This course is designed to
+          prepare individuals for a wide range of roles in the IT industry by focusing on both the theoretical
+          foundations and practical applications of information technology.</p>
+      </div>
+      <div class="card">
+        <h3>Electrical Engineering</h3>
+        <p>Electrical Engineering (EE) is a core branch of engineering that focuses on the study, design, and
+          application of systems and equipment that use electricity, electronics, and electromagnetism. It deals with
+          power generation, transmission, distribution, electrical machines, control systems, and modern electronics.
+          Electrical engineering plays a key role in building the infrastructure that powers industries, cities, homes,
+          and future technologies like electric vehicles, renewable energy systems, smart grids, and robotics.</p>
+      </div>
+      <div class="card">
+        <h3>Electronics Engineering</h3>
+        <p>Electronics Engineering is a branch of engineering that deals with the design, development, and application
+          of electronic devices, circuits, and systems. It focuses on how electrons are controlled and manipulated to
+          create modern technologies such as smartphones, computers, medical devices, communication systems, embedded
+          systems, and much more. This course blends knowledge from physics, mathematics, computer science, and
+          electrical engineering.</p>
+      </div>
+      <div class="card">
+        <h3>Pharmacy</h3>
+        <p>Diploma in Pharmacy (D.Pharm) is a short-term professional course that trains students to work as qualified
+          pharmacy technicians or assistants in hospitals, retail pharmacies, pharmaceutical companies, and healthcare
+          settings. This program focuses on drug composition, manufacturing, dispensing, patient counseling, and
+          pharmaceutical ethics. It provides both theoretical and practical knowledge needed to support pharmacists and
+          ensure safe medication use.</p>
+      </div>
+      <div class="card">
+        <h3>Printing Technology</h3>
+        <p>Printing Technology is a specialized branch of engineering and design that focuses on the science, processes,
+          and machinery involved in producing printed materials. The course covers various aspects of traditional and
+          modern printing methods, prepress operations, press management, post-press operations, and digital printing
+          technologies. With the rapid advancement of digital media, printing technology now also includes 3D printing,
+          packaging technology, and electronic publishing.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Contact Us</h2>
+    <p>Phone: +91-761-2622952</p>
+    <p>Email: prinknp.jbp@mp.gov.in</p>
+  </div>
+
+  <footer>
+    <div class="logoContent">
+      <img src="kpclogo.png" alt="KPC Logo">
+      <h1 class="logoName">Polytechnic Colege</h1>
+    </div>
+    <p>&copy; 2025 Kalaniketan Polytechnic College 2.0. All Rights Reserved.</p>
+  </footer>
+
+</body>
+
+</html>
